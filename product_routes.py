@@ -19,3 +19,12 @@ def create_product():
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
+
+@product_bp.route('/products', methods=['GET'])
+def get_products():
+    try:
+        products = Product.query.all()
+        products_data = [{'id': p.id, 'name': p.name, 'price': p.price, 'stock': p.stock} for p in products]
+        return jsonify(products_data), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
