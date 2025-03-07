@@ -1,40 +1,42 @@
 import React, { useState, useEffect } from 'react';
 
-function CustomerDetails({ customerId, onCustomerDeleted }) {
+function CustomerDetails({ customerId }) {
   const [customer, setCustomer] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!customerId) return;
+
     fetch(`http://127.0.0.1:5000/api/customers/${customerId}`)
-      .then(res => res.json())
-      .then(data => setCustomer(data))
-      .catch(err => console.error('Error:', err));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch customer details');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setCustomer(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error:', err);
+        setError('Could not load customer details.');
+        setLoading(false);
+      });
   }, [customerId]);
 
-  const handleDelete = () => {
-    fetch(`http://127.0.0.1:5000/api/customers/${customerId}`, {
-      method: 'DELETE',
-    })
-      .then(res => res.json())
-      .then(data => {
-        alert(data.message);
-        if (onCustomerDeleted) onCustomerDeleted();  // Notify parent that the customer was deleted
-      })
-      .catch(err => {
-        console.error('Error:', err);
-        alert('Failed to delete customer');
-      });
-  };
-
-  if (!customer) return <p>Loading...</p>;
+  if (loading) return <p className="text-info">Loading...</p>;
+  if (error) return <p className="text-danger">{error}</p>;
+  if (!customer) return null;
 
   return (
-    <div>
-      <h2>Customer Details</h2>
-      <p>ID: {customer.id}</p>
-      <p>Name: {customer.name}</p>
-      <p>Email: {customer.email}</p>
-      <p>Phone: {customer.phone}</p>
-      <button onClick={handleDelete}>Delete Customer</button>
+    <div className="card p-3 mt-3 shadow border-0" style={{ backgroundColor: '#f4f4f4' }}>
+      <h2 className="text-maroon">Customer Details</h2>
+      <p><strong>ID:</strong> {customer.id}</p>
+      <p><strong>Name:</strong> {customer.name}</p>
+      <p><strong>Email:</strong> {customer.email}</p>
+      <p><strong>Phone:</strong> {customer.phone}</p>
     </div>
   );
 }

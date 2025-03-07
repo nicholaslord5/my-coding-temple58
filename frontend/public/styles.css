@@ -1,0 +1,96 @@
+.text-orange {
+    color: #ff6600 !important;
+}
+
+.text-maroon {
+    color: #800000 !important;
+}
+
+.text-skyblue {
+    color: #00aaff !important;
+}
+
+.btn-skyblue {
+    background-color: #00aaff !important; /* Blue color */
+    color: white !important;
+    padding: 0.75rem 2rem !important;
+    border-radius: 5px !important;
+    border: none !important;
+    margin-top: 1.5rem !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.btn-skyblue:hover {
+    background-color: #ff6600 !important; /* Orange on hover */
+}
+
+.btn-danger {
+    background-color: #ff6600 !important; /* Orange */
+    color: white !important;
+    border-radius: 5px !important;
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+}
+
+.btn-danger:hover {
+    background-color: #00aaff !important; /* Sky blue on hover */
+}
+
+.form-group label {
+    font-weight: bold !important;
+}
+
+.form-control {
+    border-radius: 5px !important;
+    padding: 0.75rem !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.list-group-item {
+    background-color: #fff !important;
+    border-radius: 5px !important;
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.list-group-item .product-info {
+    font-size: 1.1rem !important;
+    color: #333 !important;
+}
+
+.card {
+    border-radius: 10px !important;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.product-info {
+    font-size: 1rem !important;
+}
+
+.product-info span {
+    color: #333 !important;
+}
+
+.product-info strong {
+    color: #00aaff !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}

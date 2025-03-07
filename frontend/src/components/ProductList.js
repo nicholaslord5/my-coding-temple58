@@ -11,7 +11,7 @@ function ProductList() {
       .catch((err) => console.error('Error:', err));
   }, []);
 
-  const handleProductCreated = (newProductId) => {
+  const handleProductCreated = () => {
     fetch('http://127.0.0.1:5000/api/products')
       .then((res) => res.json())
       .then((data) => setProducts(data))
@@ -25,37 +25,33 @@ function ProductList() {
       .then((res) => res.json())
       .then((data) => {
         alert(data.message);
-        // Optionally, refresh the product list
-        setProducts(products.filter(product => product.id !== id));
+        setProducts(products.filter((product) => product.id !== id));
       })
       .catch((err) => console.error('Error:', err));
   };
-  
+
   return (
-    <div>
-      <h2>Product List</h2>
-  
-      <CreateProductForm />
-      
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - ${product.price} (Stock: {product.stock})
-            <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-  
-  return (
-    <div>
-      <h2>Product List</h2>
+    <div className="container mt-5">
+      <h2 className="text-orange">Product List</h2>
       <CreateProductForm onProductCreated={handleProductCreated} />
-      <ul>
+
+      <ul className="list-group mt-4">
         {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - ${product.price} (Stock: {product.stock})
+          <li
+            key={product.id}
+            className="list-group-item d-flex justify-content-between align-items-center shadow-sm mb-3 rounded"
+            style={{ backgroundColor: '#f9f9f9' }}
+          >
+            <div className="product-info">
+              <span className="font-weight-bold">{product.name}</span> -{' '}
+              <strong>${product.price}</strong> (Stock: {product.stock})
+            </div>
+            <button
+              className="btn btn-skyblue btn-sm"
+              onClick={() => handleDeleteProduct(product.id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

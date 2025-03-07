@@ -30,31 +30,43 @@ function EditProductForm({ productId, onProductUpdated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="Product Name"
-        required
-      />
-      <input
-        name="price"
-        type="number"
-        value={formData.price}
-        onChange={handleChange}
-        placeholder="Price"
-        required
-      />
-      <input
-        name="stock"
-        type="number"
-        value={formData.stock}
-        onChange={handleChange}
-        placeholder="Stock"
-        required
-      />
-      <button type="submit">Update Product</button>
+    <form onSubmit={handleSubmit} className="mb-4">
+      <div className="form-group">
+        <label htmlFor="name">Product Name</label>
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Product Name"
+          required
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="price">Price</label>
+        <input
+          name="price"
+          type="number"
+          value={formData.price}
+          onChange={handleChange}
+          placeholder="Price"
+          required
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="stock">Stock</label>
+        <input
+          name="stock"
+          type="number"
+          value={formData.stock}
+          onChange={handleChange}
+          placeholder="Stock"
+          required
+          className="form-control"
+        />
+      </div>
+      <button type="submit" className="btn btn-skyblue">Update Product</button>
     </form>
   );
 }
